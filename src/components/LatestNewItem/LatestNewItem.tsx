@@ -12,7 +12,7 @@ const LatestNewItem = ( {title, time}: LatestNewItem ) => {
                 pb-[20px] border-solid border-b-[1px] border-slate-100">
                   <p className="hours text-[13px] text-sky-500">{time}</p>
                   <h2 className="title-latest-news-item mt-[5px] text-[18px] text-black 
-                  text-start font-medium leading-none">{title}</h2>
+                  text-start font-normal leading-none">{title}</h2>
                 </div>
     </>
   )

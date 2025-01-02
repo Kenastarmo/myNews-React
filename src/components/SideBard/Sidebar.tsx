@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 import { sidebarCardsData } from "../../sidebarCards";
 
@@ -17,10 +17,7 @@ type cardType = {
 
 const Sidebar = ({activeCategory, setActiveCategory, setCategory}: sidebarType) => {
 
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
   const handleClickCategory = (cardId: number, name: string) => {
-    //setActiveIndex(index);
       setCategory(name)
       setActiveCategory(cardId)
     

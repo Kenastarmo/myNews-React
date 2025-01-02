@@ -1,33 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Card from "../Card/Card";
 import DefaultMyNewsImage from "../../assets/DefaultMyNews1.png";
 import LatestNewTitle from "../LatestNewTitle/LatestNewTitle";
 import LatestNewItem from "../LatestNewItem/LatestNewItem";
+import { useFetchNewsByCategory } from "../../api/useFetchNewsByCategory";
+import { useFetchLatestNews } from "../../api/useFetchLatestNews";
 
 type ResultsType = {
-  searchData: any;
-  latestNewsData:any;
-
+  category: string;
 };
 
-const Results = ({ searchData, latestNewsData }: ResultsType) => {
+const Results = ({ category }: ResultsType) => {
 
-  const first4Elements = searchData?.slice(0, 4);
-  const otherElements = searchData?.slice(4);
+  const { dataCategory, isLoadingCategory, isErrorCategory } = useFetchNewsByCategory(category);
+  const { dataLatestNews, isLoadingLatestNews, isErrorLatestNews } = useFetchLatestNews(category) 
+
+  const first4Elements = dataCategory?.slice(0, 4);
+  const otherElements = dataCategory?.slice(4);
+  console.log(otherElements)
 
   return (
     <>
       <div className="right flex flex-col w-[100%] gap-4">
-        
         <div className="container upper-div gap-4" style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", }}>
-          
               {first4Elements?.map((item) => {
-                
                 return (
                   <Card
                     key={item.id}
                     imgSrc={
-                      item.urlToImage ? item.urlToImage : DefaultMyNewsImage
+                      item.multimedia[0]?.legacy?.xlarge
+                              ? item.multimedia[0]?.legacy?.xlarge
+                              : DefaultMyNewsImage
                     }
                     category={item.news_desk}
                     title={item.headline.main}
@@ -35,17 +38,14 @@ const Results = ({ searchData, latestNewsData }: ResultsType) => {
                   />
                 );
               })}
-            
           <div
             className={`container right-upper-div p-[25px] rounded-lg max-h-full overflow-scroll  bg-[#ffffff] p-4`}
             style={{gridRowStart:"1", gridRowEnd:"3", gridColumnStart:"3", overflowX:"auto"}}>
             <div className="container flex flex-col items-start justify-start ">
               <LatestNewTitle />
-
               <div className="latest-news-items flex flex-col  mt-[20px] font-bold" style={{maxHeight:"440px"}}>
-                {/* <LatestNewItem /> */}
                  {
-                  latestNewsData?.map((item) => {
+                  dataLatestNews?.map((item) => {
                     return (
                       <LatestNewItem
                         key={item.id}
@@ -61,16 +61,18 @@ const Results = ({ searchData, latestNewsData }: ResultsType) => {
             </div>
           </div>
         </div>
-
         <div
-          className="donji_div container grid grid-cols-3
-        grid-rows-[minmax(350px,_1fr)_minmax(350px,_1fr)] auto-rows-[minmax(0,_1fr)]  gap-4 "
+          className="donji_div container grid grid-cols-3 grid-rows-[minmax(350px,_1fr)_minmax(350px,_1fr)] auto-rows-[minmax(0,_1fr)] gap-4"
         >
           {otherElements?.map((item) => {
             return (
               <Card
                 key={item.id}
-                imgSrc={item.urlToImage ? item.urlToImage : DefaultMyNewsImage}
+                imgSrc={
+                  item.multimedia[0]?.legacy?.xlarge
+                          ? item.multimedia[0]?.legacy?.xlarge
+                          : DefaultMyNewsImage
+                }
                 category={item.news_desk}
                 title={item.headline.main}
                 author={item.author}

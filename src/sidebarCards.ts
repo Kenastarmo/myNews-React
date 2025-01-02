@@ -42,22 +42,3 @@ export const sidebarCardsData = [
         blackImgPath: Science,
     },
 ]
-
-
-// export const sidebarCardsData = [
-//     {
-//         name: "home", 
-//         redImgPath: "./assets/sidebarImages/homeRed.svg",
-//         blackImgPath: "./assets/sidebarImages/homeBlack.svg",
-//     },
-//     {
-//         name: "general", 
-//         redImgPath: "./assets/sidebarImages/newspaperRed.svg",
-//         blackImgPath: "./assets/sidebarImages/newspaperBlack.svg",
-//     },
-//     {
-//         name: "business", 
-//         redImgPath: "./assets/sidebarImages/cooperationRed.svg",
-//         blackImgPath: "./assets/sidebarImages/cooperationBlack.svg",
-//     },
-// ]

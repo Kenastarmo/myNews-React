@@ -8,10 +8,9 @@ type ButtonType = {
   
 }
 
-const Button = ({text, color, txt_color, onClick}:ButtonType) => {
+const Button = ({text, color, txt_color}:ButtonType) => {
   return (
       <>
-          {/* <button className="bg-red px-3 py-1"> */}
           <button className={` px-5 py-2 rounded-md text-lg uppercase 
             font-bold tracking-[.05em] ${color == "white" ? "bg-white" : "bg-red"}
             border-red hover:border-red ${txt_color == "white" ? "text-slate-50" : "text-slate-950"}`}>

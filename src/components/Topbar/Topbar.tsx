@@ -1,13 +1,16 @@
 import React from 'react'
 import Button from '../Button/Button'
+import Logo from "../../assets/MyNews.svg";
 
 const Topbar = () => {
   return (
     <div className='container_red bg-red'>
       <div className='container mx-auto px-[5%] py-[18px] flex justify-between items-center '>
         <div className='left container flex flex-row gap-[30px]  '>
-          <p className='topbar-p1 text-[18px] text-white font-semibold leading-normal'>Make MyNews your 
-            homepage</p>
+          {/* <p className='topbar-p1 text-[18px] text-white font-semibold leading-normal'>Make MyNews your  */}
+            {/* homepage</p> */}
+            <img src={Logo} className="max-w-[170px]"></img>
+
           <p className='topbar-p2 text-[18px] text-white font-normal leading-normal'>Every day discover 
             what's trending on the internet!</p>
         </div>
